@@ -75,7 +75,7 @@ class ContactList extends Component {
   }
 
   deleteContacts = (id) => {
-    axios.delete(`http://localhost:3000/contacts/${id}`)
+    axios.delete(`http://localhost:3000/contacts/id/${id}`)
       .then(({data}) => {
         alert('data has been deleted')
         this.fetchContacts()
@@ -87,7 +87,7 @@ class ContactList extends Component {
 
   updateContacts = () => {
     this.toggleModal()
-    axios.put(`http://localhost:3000/contacts/${this.state.data._id}`, {
+    axios.put(`http://localhost:3000/contacts/id/${this.state.data._id}`, {
       name: this.state.data.name,
       phone: this.state.data.phone,
       company: this.state.data.company,
