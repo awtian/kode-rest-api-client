@@ -51,7 +51,7 @@ class ContactList extends Component {
   fetchContacts = () => {
     axios.get('http://localhost:3000/contacts/')
     .then(({data}) => this.setState({
-      contacts: data
+      contacts: data.data 
     }))
     .catch(err => {console.log(err)})
   }
@@ -114,14 +114,18 @@ class ContactList extends Component {
       <div style={{marginTop: '3vh'}} className="container">
         <Button style={{margin: '10px', padding: '20px'}} color="primary" onClick={() => this.toggleModal()}> Add New Contact</Button>
         <Table dark>
-          <tr>
-            <th>Name</th>
-            <th>Phone</th> 
-            <th>Company</th>
-            <th>Active</th>
-            <th>Actions</th>
-          </tr>
-          {contacts.map(each => <Contact contact={each} delcon={this.deleteContacts} toggleEdit={this.toggleEdit}/>)}
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th> 
+              <th>Company</th>
+              <th>Active</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {contacts.map(each => <Contact key={each._id} contact={each} delcon={this.deleteContacts} toggleEdit={this.toggleEdit}/>)}
+          </tbody>
         </Table>
         <Modal 
           showModal={showModal}
